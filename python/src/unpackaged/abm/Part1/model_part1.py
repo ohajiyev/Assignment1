@@ -7,13 +7,13 @@ Created on Wed Mar  6 20:16:39 2019
 #import random module
 import random
 
-# Make a y variable.
-y0 = 50
-y1 = 50
+# Make a y variable random between 0-99.
+y0 = random.randint(0,99)
+y1 = random.randint(0,99)
 
-# Make a x variable.
-x0 = 50
-x1 = 50
+# Make a x variable random between 0-99.
+x0 = random.randint(0,99)
+x1 = random.randint(0,99)
 
 # Change y and x based on random numbers.
 if random.random() < 0.5:
