@@ -3,6 +3,9 @@
 Created on Wed Mar  6 20:16:39 2019
 
 @author: hao2d9
+
+The script shows the results of Part 2 instructions
+
 """
 #import modules
 import random # To generate random numbers
