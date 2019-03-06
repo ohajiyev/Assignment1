@@ -57,4 +57,8 @@ distance = (((x0 - x1)**2) + ((y0 - y1)**2))**0.5
 
 print(distance)
 
-            
+matplotlib.pyplot.ylim(0, 99)
+matplotlib.pyplot.xlim(0, 99)
+matplotlib.pyplot.scatter(agents[0][1],agents[0][0], color='red')
+matplotlib.pyplot.scatter(agents[1][1],agents[1][0], color='blue')
+matplotlib.pyplot.show()
