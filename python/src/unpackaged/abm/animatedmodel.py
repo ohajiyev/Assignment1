@@ -39,7 +39,8 @@ def update(frame_number):
         print(agents[i][0],agents[i][1])
 
 
-animation = matplotlib.animation.FuncAnimation(fig, update, interval=1)
+animation = matplotlib.animation.FuncAnimation(fig, update, interval=1, 
+                                    repeat=False, frames=num_of_iterations)
 
 matplotlib.pyplot.show()
 

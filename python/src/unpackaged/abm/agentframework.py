@@ -3,6 +3,8 @@
 Created on Fri Feb  1 20:00:24 2019
 
 @author: hao2d9
+
+The class agent is  used 
 """
 import random
 
@@ -70,7 +72,7 @@ class Agent():
                     self.store = ave
                     agent.store = ave
                     #print("sharing " + str(dist) + " " + str(ave))
-
+                    
     def distance_between(agents_row_a, agents_row_b):
         return (((agents_row_a.x - agents_row_b.x)**2) + 
                 ((agents_row_a.y - agents_row_b.y)**2))**0.5    

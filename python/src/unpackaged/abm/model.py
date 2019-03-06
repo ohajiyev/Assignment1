@@ -22,12 +22,11 @@ neighbourhood = 20
 
 agents = []
 
-fig = matplotlib.pyplot.figure(figsize=(7, 7))
-ax = fig.add_axes([0, 0, 1, 1])
+
 
 # Make the agents.
 for i in range(num_of_agents):
-    agents.append(agentframework.Agent(environment, agents))
+    agents.append(agentframework.Agent(environment))
 
 #matplotlib.pyplot.xlim(0, 99)
 #matplotlib.pyplot.ylim(0, 99)
@@ -51,6 +50,8 @@ def update(frame_number, agents):
             matplotlib.pyplot.scatter(agents[i][0],agents[i][1])
             print(agents[i][0],agents[i][1])
  
+fig = matplotlib.pyplot.figure(figsize=(7, 7))
+ax = fig.add_axes([0, 0, 1, 1])
 
 animation = matplotlib.animation.FuncAnimation(fig, update(agents), interval=1)
 
