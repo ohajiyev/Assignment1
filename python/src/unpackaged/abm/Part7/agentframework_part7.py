@@ -75,8 +75,7 @@ class Agent():
             self.environment[self._y][self._x] = 0
             
     def distance_between(self, agent):
-        return (((self.x - agent.x)**2) + 
-                ((self.y - agent.y)**2))**0.5  
+        return (((self.x - agent.x)**2) + ((self.y - agent.y)**2))**0.5  
                 
     def share_with_neighbours(self, neighbourhood):
         for agent in self.agents:
