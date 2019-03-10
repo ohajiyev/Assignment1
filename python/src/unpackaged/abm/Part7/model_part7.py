@@ -4,7 +4,10 @@ Created on Wed Mar  6 20:16:39 2019
 
 @author: hao2d9
 
-The script shows the results of Part 6 instructions.
+The script shows the results of Part 7 instructions.
+
+Part 6 enhacemnet was added to the script. The modified environment state
+is written to the new file.
 
 """
 #==============================================================================
@@ -13,7 +16,7 @@ The script shows the results of Part 6 instructions.
 import random
 import operator
 import matplotlib.pyplot
-import agentframework_part6 as agentframework
+import agentframework_part7 as agentframework
 import csv
 
 # End of Import modules
@@ -31,7 +34,7 @@ def distance_between(agents_row_a, agents_row_b):
 #==============================================================================
 
 #==============================================================================
-# Main function definition
+# Start of Main function
 def main():
     
     #==========================================================================
@@ -39,10 +42,10 @@ def main():
     
     num_of_agents = 10 # number of agents
     num_of_iterations = 100 # number of iterations
+    neighbourhood = 20
     environment = [] # empty list of environment variable 
-    agents = [] # empty list of agents objects
+    agents = [] # empty list of Agent objects
     file_input = open("in.txt") # read the input file
-    distances = [] # List of distances
     
     # End of Create variables
     #==========================================================================
@@ -57,7 +60,7 @@ def main():
     
     # Make the agents.
     for i in range(num_of_agents):
-        agents.append(agentframework.Agent(environment))
+        agents.append(agentframework.Agent(environment, agents))
     
     # Print the state of environment and agents before changes
     matplotlib.pyplot.xlim(0, 99)
@@ -72,6 +75,7 @@ def main():
         for i in range(num_of_agents):
             agents[i].move()
             agents[i].eat()
+            agents[i].share_with_neighbours(neighbourhood)  
             
     # Print the state of environment and agents after changes
     matplotlib.pyplot.xlim(0, 99)
@@ -85,22 +89,12 @@ def main():
     with open('out.txt', 'w') as file_output:
         for env_row in environment:
             file_output.write(','.join(str(env_value) for env_value in env_row) + '\n')
-    
-    # Calculate the distance between agents
-    for agents_row_a in agents:
-        for agents_row_b in agents:
-            distance = distance_between(agents_row_a, agents_row_b)
+             
+    print(agents[0].x, agents[0].y) 
+    print(agents[0].agents[1].x, agents[0].agents[1].y)
+    print()
             
-            
-#    # Calculate the distance between agents and does not repeat pair of agents
-#    for i in range(num_of_agents-1):
-#        for j in range(i+1,num_of_agents,1):
-#            dist = distance_between(agents[i], agents[j])
-#            distances.append(dist)
-#            print(dist)
-#    print(max(distances), min(distances))
-            
-# End of Main function definition
+# End of Main function
 #==============================================================================
         
         
