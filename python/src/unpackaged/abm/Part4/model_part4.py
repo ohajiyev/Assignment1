@@ -20,7 +20,7 @@ start = time.process_time() # Start time of the code
 # Work out the distance between the two sets of y and xs.
 def distance_between(agents_row_a, agents_row_b):
     return (((agents_row_a[1] - agents_row_b[1])**2) + 
-                ((agents_row_a[0] - agents_row_b[0])**2))**0.5 
+                ((agents_row_a[0] - agents_row_b[0])**2))**0.5  
 
 # Number of agents
 num_of_agents = 10
