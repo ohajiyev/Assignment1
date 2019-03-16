@@ -107,6 +107,8 @@ def draw_environment(agents, environment, num_of_agents):
     matplotlib.pyplot.show()
     
 
+    
+
 # End of Function definitions
 #==============================================================================
 
@@ -127,7 +129,7 @@ def main():
     # End of Create variables
     #==========================================================================
 
-    #
+    # Setup figure parameters
     fig = matplotlib.pyplot.figure(figsize=(7, 7))
     ax = fig.add_axes([0, 0, 1, 1])
     
@@ -143,28 +145,46 @@ def main():
         agents.append(agentframework.Agent(environment, agents))
     
     # Print the state of environment and agents before changes
-    draw_environment(agents, environment, num_of_agents)
+    #draw_environment(agents, environment, num_of_agents)
     
-    # Move and eat the agents.
-    for j in range(num_of_iterations):
-        random.shuffle(agents)
+#     Move and eat the agents.
+#    for j in range(num_of_iterations):
+#        random.shuffle(agents)
+#        for i in range(num_of_agents):
+#            agents[i].move()
+#            agents[i].eat()
+#            agents[i].share_with_neighbours(neighbourhood)  
+    def update(frame_number):
+    
+        #fig.clear()
+        
+        # Move and eat the agents.
+    #    for j in range(num_of_iterations):
+    #        random.shuffle(agents)
         for i in range(num_of_agents):
             agents[i].move()
             agents[i].eat()
             agents[i].share_with_neighbours(neighbourhood)  
+                
+        for i in range(num_of_agents):
+            matplotlib.pyplot.scatter(agents[i][0],agents[i][1])
+            print(agents[i][0],agents[i][1])
+            
+            
             
     # Print the state of environment and agents after changes
-    draw_environment(agents, environment, num_of_agents)
+    #draw_environment(agents, environment, num_of_agents)
+
+    animation = matplotlib.animation.FuncAnimation(fig, update, interval=1)
+    
+    matplotlib.pyplot.show()
     
     # Write the new state  of environemnt to the file
-    with open('out.txt', 'w') as file_output:
-        for env_row in environment:
-            file_output.write(','.join(str(env_value) for env_value in 
-                                       env_row) + '\n')
+#    with open('out.txt', 'w') as file_output:
+#        for env_row in environment:
+#            file_output.write(','.join(str(env_value) for env_value in 
+#                                       env_row) + '\n')
              
-    print(agents[0].x, agents[0].y) 
-    print(agents[0].agents[1].x, agents[0].agents[1].y)
-            
 # End of Main function
 #==============================================================================
         
