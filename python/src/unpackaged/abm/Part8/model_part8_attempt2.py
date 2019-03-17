@@ -233,6 +233,10 @@ for data_row in file_input:
 # Make the agents.
 for i in range(num_of_agents):
     agents.append(agentframework.Agent(environment, agents))
+
+# Print the state of environment and agents before changes
+#draw_environment(agents, environment, num_of_agents)
+
         
 animation = matplotlib.animation.FuncAnimation(fig, update, 
                                                interval=1, repeat=False, 
