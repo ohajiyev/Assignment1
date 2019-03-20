@@ -1,61 +1,63 @@
-"""
-====
-XKCD
-====
+import matplotlib.pyplot
+import csv
 
-Shows how to create an xkcd-like plot.
-"""
-import matplotlib.pyplot as plt
-import numpy as np
+neighbourhood_diameter = 30
 
-with plt.xkcd():
-    # Based on "Stove Ownership" from XKCD by Randall Monroe
-    # http://xkcd.com/418/
+f1 = open('in.txt', newline='')
+reader = csv.reader(f1, quoting=csv.QUOTE_NONNUMERIC)
 
-    fig = plt.figure()
-    ax = fig.add_axes((0.1, 0.2, 0.8, 0.7))
-    ax.spines['right'].set_color('none')
-    ax.spines['top'].set_color('none')
-    plt.xticks([])
-    plt.yticks([])
-    ax.set_ylim([-30, 10])
+image = []
 
-    data = np.ones(100)
-    data[70:] -= np.arange(30)
+for row in reader:
+    rowlist = []				
+    for item in row:				
+        rowlist.append(item)
+    image.append(rowlist)
 
-    plt.annotate(
-        'THE DAY I REALIZED\nI COULD COOK BACON\nWHENEVER I WANTED',
-        xy=(70, 1), arrowprops=dict(arrowstyle='->'), xytext=(15, -10))
+        
+processed_image = []
+for i in range(len(image)):
+    row_list = []
+    for j in range(len(image[i])):
+        row_list.append(0)
+    processed_image.append(row_list)
 
-    plt.plot(data)
+    
+if neighbourhood_diameter < 1:
+    neighbourhood_diameter = 1
+    
+if neighbourhood_diameter % 2 == 0:
+    neighbourhood_diameter = neighbourhood_diameter + 1
 
-    plt.xlabel('time')
-    plt.ylabel('my overall health')
-    fig.text(
-        0.5, 0.05,
-        '"Stove Ownership" from xkcd by Randall Monroe',
-        ha='center')
+neighbourhood_radius =  int((neighbourhood_diameter - 1) / 2)
+    
+    
+for i in range(0 + neighbourhood_radius, len(image) - neighbourhood_radius):
+    for j in range(0 + neighbourhood_radius, len(image[0]) - neighbourhood_radius):
+        sum = 0
+        for y in range(i - neighbourhood_radius, i + neighbourhood_radius + 1):     
+            for x in range(j - neighbourhood_radius, j + neighbourhood_radius + 1):
+                sum += image[y][x]
+        average = sum / (neighbourhood_diameter * neighbourhood_diameter)
+        processed_image[i][j] = average
 
-    # Based on "The Data So Far" from XKCD by Randall Monroe
-    # http://xkcd.com/373/
+        
+matplotlib.pyplot.xlim(0, 299)
+matplotlib.pyplot.ylim(0, 299)
+sp1 = matplotlib.pyplot.subplot(1, 2, 1)
+sp1.set_title("Original")
+matplotlib.pyplot.imshow(image)        
+#matplotlib.pyplot.plot(image)
+ 
+sp2 = matplotlib.pyplot.subplot(1, 2, 2)
+sp2.set_title("Smoothed")
+matplotlib.pyplot.imshow(processed_image)   
+#matplotlib.pyplot.plot(processed_image)     
+matplotlib.pyplot.show()  
 
-    fig = plt.figure()
-    ax = fig.add_axes((0.1, 0.2, 0.8, 0.7))
-    ax.bar([0, 1], [0, 100], 0.25)
-    ax.spines['right'].set_color('none')
-    ax.spines['top'].set_color('none')
-    ax.xaxis.set_ticks_position('bottom')
-    ax.set_xticks([0, 1])
-    ax.set_xlim([-0.5, 1.5])
-    ax.set_ylim([0, 110])
-    ax.set_xticklabels(['CONFIRMED BY\nEXPERIMENT', 'REFUTED BY\nEXPERIMENT'])
-    plt.yticks([])
 
-    plt.title("CLAIMS OF SUPERNATURAL POWERS")
-
-    fig.text(
-        0.5, 0.05,
-        '"The Data So Far" from xkcd by Randall Monroe',
-        ha='center')
-
-plt.show()
+f2 = open('out.txt', 'w', newline='')
+writer = csv.writer(f2, quoting=csv.QUOTE_NONNUMERIC)
+for row in processed_image:		
+    writer.writerow(row)		
+f2.close()

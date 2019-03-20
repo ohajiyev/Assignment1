@@ -4,7 +4,7 @@ Created on Wed Mar  6 20:16:39 2019
 
 @author: hao2d9
 
-The script shows the results of Part 7 instructions.
+The script shows the results of Part 8 instructions.
 
 Part 6 enhacemnet was added to the script. The modified environment state
 is written to the new file.
@@ -208,7 +208,7 @@ def update(frame_number):
 # Create variables
 
 num_of_agents = 10 # number of agents
-num_of_iterations = 100 # number of iterations
+num_of_iterations = 1000 # number of iterations
 neighbourhood = 20
 environment = [] # empty list of environment variable 
 agents = [] # empty list of Agent objects
