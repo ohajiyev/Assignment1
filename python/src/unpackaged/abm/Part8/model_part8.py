@@ -2,7 +2,7 @@
 """
 Created on Wed Mar  6 20:16:39 2019
 
-@author: hao2d9
+@author: Orkhan Hajiyev (gy17oh)
 
 The script shows the results of Part 8 instructions.
 
