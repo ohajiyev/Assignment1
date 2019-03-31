@@ -32,12 +32,7 @@ class Agent():
     @x.setter
     def x(self, value):
         """Set the 'x' property."""
-        self._x = value
-
-    @x.deleter
-    def x(self):
-        """Delete the 'x' property."""
-        del self._x    
+        self._x = value  
 
     @property
     def y(self):
@@ -48,11 +43,6 @@ class Agent():
     def y(self, value):
         """Set the 'y' property."""
         self._y = value
-
-    @y.deleter
-    def y(self):
-        """Delete the 'y' property."""
-        del self._y    
         
     def move(self):
         if random.random() < 0.5:
