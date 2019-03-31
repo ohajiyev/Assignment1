@@ -32,7 +32,14 @@ INSTRUCTIONS TO RUN:
         
     The code can be run in Anaconda command line, Spyder and Jupyter notebook.
         Anaconda cmd: 
-            1. 'python model.py'
+            1. 1st option. Run 'python model.py' in the command line without 
+               any parameters. Default values will be : agents number = 10; 
+               number of iteration = 100; neighbourhood = 30
+               
+               2nd Option. Run 'python model.py 10 100 20' in the command line 
+               with integer parameters. In a case if input is wrong default 
+               values will be used: agents number = 10; number of 
+               iteration = 100; neighbourhood = 30
         Spyder: 
             1. Open 'model.py'
             2. Ensure that IPython console is activated
