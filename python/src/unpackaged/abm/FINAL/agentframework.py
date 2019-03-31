@@ -1,20 +1,30 @@
 # -*- coding: utf-8 -*-
 """
-Created on Sun Mar 10 06:56:06 2019
+Date Last Updated: Mar 31, 2019
 
-@author: hao2d9
+Author: Orkhan Hajiyev (gy17oh)
 
-Agentframework creation. The script shows the results of Part 7 instructions.
+Title: Agent class
 
-Eat method was altered to eat everything what left on the environment
-
+Purpose: 
+    Agent class contains agent's states and define its behaviour
+    
+License: 
+    Copyright (c) 2019 Orkhan Hajiyev
+    Lisence under MIT License
+    License link: 
+        https://github.com/ohajiyev/Assignment2/blob/master/LICENSE.md
+       
+Python version: 3.7
 """
 
 # Import modules
 import random
+import os
 
 # Create Agent class
 class Agent():    
+    """ Initalize the class """
     def __init__ (self, environment, agents):
         self._y = random.randint(0,99)
         self._x = random.randint(0,99)
@@ -22,8 +32,9 @@ class Agent():
         self.agents = agents
         self.store = 0
         
-    #The returned property object also has the attributes fget, fset, and fdel 
-    #corresponding to the constructor arguments.
+    # Set the property of the private variables to use Incapsulation
+    ###########################################################################
+
     @property
     def x(self):
         """Get the 'x' property."""
@@ -43,8 +54,14 @@ class Agent():
     def y(self, value):
         """Set the 'y' property."""
         self._y = value
+
+    # End of property
+    ###########################################################################
         
     def move(self):
+        """
+        Function randomly change the position of the agent
+        """
         if random.random() < 0.5:
             self._y = (self._y + 1) % 100
         else:
@@ -55,7 +72,13 @@ class Agent():
         else:
             self._x = (self._x - 1) % 100
             
-    def eat(self): # Now it eat what is left
+    def eat(self):
+        """
+        Function simulate the 'eat' behaviour of the agent and the agent 
+        decrease the value of the environment dataset at the location of 
+        the agent. Eat method was altered to eat everything what left on 
+        the environment
+        """
         if self.environment[self._y][self._x] >= 10:
             self.environment[self._y][self._x] -= 10
             self.store += 10
@@ -65,9 +88,15 @@ class Agent():
             self.environment[self._y][self._x] = 0
             
     def distance_between(self, agent):
+        """
+        Function returns the distance between two agents
+        """
         return (((self.x - agent.x)**2) + ((self.y - agent.y)**2))**0.5  
                 
     def share_with_neighbours(self, neighbourhood):
+        """
+        Function share the resources between two close agents
+        """
         for agent in self.agents:
             if self != agent:
                 dist = self.distance_between(agent) 
@@ -76,4 +105,13 @@ class Agent():
                     ave = sum /2
                     self.store = ave
                     agent.store = ave
-                    #print("sharing " + str(dist) + " " + str(ave))
+
+    def __str__(self):
+        """ Overwrite the method to create the string to convert to text """
+        return 'Agent x: {0}\
+                {3}Agent y: {1}\
+                {3}Agent store: {2}'\
+                .format(self._x, \
+                        self._y, \
+                        round(self.store, 1), \
+                        os.linesep)
