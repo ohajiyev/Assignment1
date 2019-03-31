@@ -47,13 +47,13 @@ Instructions to run:
     The code can be run in Anaconda command line, Spyder and Jupyter notebook.
         Anaconda cmd: 
             1. 1st option. Run 'python model.py' in the command line without 
-               any parameters. Defaults will be used: agents number = 10; 
+               any parameters. Default values will be : agents number = 10; 
                number of iteration = 100; neighbourhood = 30
                
                2nd Option. Run 'python model.py 10 100 20' in the command line 
-               with integer parameters. In a case if input is wrong defaults 
-               will be used: agents number = 10; number of iteration = 100; 
-               neighbourhood = 30
+               with integer parameters. In a case if input is wrong default 
+               values will be used: agents number = 10; number of 
+               iteration = 100; neighbourhood = 30
         Spyder: 
             1. Open 'model.py'
             2. Ensure that IPython console is activated
@@ -170,12 +170,12 @@ def read_input_arguments(argv):
     entered or the input is wrong the default values will be used
     """
     # number of agents
-    num_of_agents = 10 
+    num_of_agents = 10
     # number of iterations
-    num_of_iterations = 10 
+    num_of_iterations = 100
     # the proximity distance between agents at which they will interact which each
     # other
-    neighbourhood = 20 
+    neighbourhood = 20
     if len(sys.argv) == 1:
         print('No input parameters. The default values will be assigned')
     else:
@@ -189,7 +189,7 @@ def read_input_arguments(argv):
                 neighbourhood = int(sys.argv[3])
             except ValueError:
                 num_of_agents = 10 
-                num_of_iterations = 10 
+                num_of_iterations = 100 
                 neighbourhood = 20 
                 print('Please enter an integer. Wrong input parameters. '
                       + 'The default values will be assigned') 
